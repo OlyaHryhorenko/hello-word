@@ -5,11 +5,11 @@ $user = new USER();
 
 if(isset($_POST['btn-signup']))
 {
-	$uname = strip_tags($_POST['txt_uname']);
-	$umail = strip_tags($_POST['txt_umail']);
-	$upass = strip_tags($_POST['txt_upass']);	
+	$login = strip_tags($_POST['login']);
+	$name = strip_tags($_POST['name']);
+	$upass = strip_tags($_POST['pass']);	
 	
-	if($uname=="")	{
+	if($login=="")	{
 		$error[] = "username !";	
 	}
 	else if($upass=="")	{
@@ -20,19 +20,19 @@ if(isset($_POST['btn-signup']))
 	{
 		try
 		{
-			$stmt = $user->runQuery("SELECT login, name FROM login WHERE login=:uname OR name=:umail");
-			$stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
+			$stmt = $user->runQuery("SELECT login, name FROM login WHERE login=:login OR name=:name");
+			$stmt->execute(array(':login'=>$login, ':name'=>$name));
 			$row=$stmt->fetch(PDO::FETCH_ASSOC);
 				
-			if($row['user_name']==$uname) {
+			if($row['login']==$login) {
 				$error[] = "уже есть!";
 			}
-			else if($row['user_email']==$umail) {
+			else if($row['name']==$name) {
 				$error[] = "уже есть!";
 			}
 			else
 			{
-				if($user->register($uname,$umail,$upass)){	
+				if($user->register($login,$name,$upass)){	
 					
 					echo "ура! зарегистрировалось";
 				}
@@ -64,10 +64,10 @@ if(isset($_POST['btn-signup']))
         <form method="post">
             <h2>Регистрация</h2><hr />
               
-            <input type="text" name="txt_uname" placeholder="Логин"  />
-     
-            <input type="text"  name="txt_umail" placeholder="Имя" />
-            	<input type="password" class="form-control" name="txt_upass" placeholder="Пароль" />
+            <input type="text" name="login" placeholder="Логин"  />
+    
+            <input type="text"  name="name" placeholder="Имя" />
+            	<input type="password" class="form-control" name="pass" placeholder="Пароль" />
             	<button type="submit" name="btn-signup">
                 	зарегистрироватся
                 </button>

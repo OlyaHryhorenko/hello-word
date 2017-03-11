@@ -42,7 +42,20 @@ class USER
 			echo $e->getMessage();
 		}				
 	}
+	public function doLogin($uname,$upass) {
+	// 	$stmt = $this->conn->prepare("SELECT id, login, password FROM login WHERE login='оля'");
+	// 	$stmt->execute();
 
+		
+	// while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC))
+	// 	{
+	// 	$name = $userRow['login'];
+		
+	// 	echo $name;
+	
+	// 	}
+
+	}
 	public function redirect($url)
 	{
 		header("Location: $url");
