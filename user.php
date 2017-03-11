@@ -43,18 +43,16 @@ class USER
 		}				
 	}
 	public function doLogin($uname,$upass) {
-	// 	$stmt = $this->conn->prepare("SELECT id, login, password FROM login WHERE login='оля'");
-	// 	$stmt->execute();
 
-		
-	// while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC))
-	// 	{
-	// 	$name = $userRow['login'];
-		
-	// 	echo $name;
-	
-	// 	}
-
+	$stmt = $this->runQuery('SELECT * FROM login WHERE login = ?');
+		$stmt->execute([$uname]);
+		while ($row = $stmt->fetch()) {
+		    if (! $row) {
+		        echo 'no';
+		    } else {
+		    echo 'Вы авторизировались по логину '. $row['login'].$row['id'].'<br/>';
+		    }
+		}   
 	}
 	public function redirect($url)
 	{

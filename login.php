@@ -3,12 +3,12 @@ session_start();
 require_once("user.php");
 $login = new USER();
 
+
 if(isset($_POST['login']))
 {
-    $uname = strip_tags($_POST['login']);
-    $upass = strip_tags($_POST['password']);
-        
-    $login->doLogin($uname,$upass);
+$uname = strip_tags($_POST['login']);
+$upass = strip_tags($_POST['password']);
+$login->doLogin($uname,$upass);
 }
 ?>
 <html>
@@ -32,7 +32,7 @@ if(isset($_POST['login']))
           
         <input type="text"  name="login" placeholder="Логин" required />
         <input type="password" name="password" placeholder="Пароль" />
-            <button type="submit"  class="btn btn-default" name="login">
+        <button type="submit"  class="btn btn-default">
                     </i>Войти
        </button>
             <label><a href="index.php">зарегистрироваться</a></label>
